@@ -85,7 +85,7 @@ JSON_TYPE = [
 ]
 
 params = {
-        "display_name": "Mass Rewritter",
+        "display_name": "Mass rewriter",
         "is_tab": True,
         "done":False,
         "pUSER": 'USER:',
@@ -186,7 +186,7 @@ def create_refresh_button(refresh_component, refresh_method, refreshed_args, ele
     return refresh_button
 '''
 def get_file_path(folder, filename):
-    basepath = "extensions/mass_rewritter/"+folder
+    basepath = "extensions/mass_rewriter/"+folder
     #print(f"Basepath: {basepath} and {filename}")
     paths = (x for x in Path(basepath).iterdir() if x.suffix in ('.txt'))
     for path in paths:
@@ -195,7 +195,7 @@ def get_file_path(folder, filename):
     return ""
 
 def get_file_pathJSON(folder, filename):
-    basepath = "extensions/mass_rewritter/"+folder
+    basepath = "extensions/mass_rewriter/"+folder
     #print(f"Basepath: {basepath} and {filename}")
     paths = (x for x in Path(basepath).iterdir() if x.suffix in ('.json'))
     for path in paths:
@@ -204,7 +204,7 @@ def get_file_pathJSON(folder, filename):
     return ""
 
 def get_file_path_noCheck(folder, filename):
-    basepath = "extensions/mass_rewritter/"+folder+"/"+filename
+    basepath = "extensions/mass_rewriter/"+folder+"/"+filename
    
     return basepath
 
@@ -299,7 +299,7 @@ def export_as_completion_json():
 
     # Construct the output file path
     output_base_name = params.get('output_filename', 'untitled_export').replace('.txt', '')
-    output_directory = Path("extensions/mass_rewritter/outputs/")
+    output_directory = Path("extensions/mass_rewriter/outputs/")
     output_file_name = output_directory / f"{output_base_name}_completion.json"
 
     # Ensure the output directory exists
@@ -384,11 +384,11 @@ def save_template(DYNAMEMORY, para_template_exampletext, DYNAMEMORY_filename):
         print("File name can't be None")
         templ_fname = "<write file name here>"
     else:    
-        basepath = "extensions/mass_rewritter/Template/"+DYNAMEMORY_filename+".txt"
+        basepath = "extensions/mass_rewriter/Template/"+DYNAMEMORY_filename+".txt"
         save_string_to_file(basepath,DYNAMEMORY)
         templ_fname = '<Saved>'
         if para_template_exampletext.strip() != '':
-            basepath2 = "extensions/mass_rewritter/Template/"+DYNAMEMORY_filename+"_examples.txt"
+            basepath2 = "extensions/mass_rewriter/Template/"+DYNAMEMORY_filename+"_examples.txt"
             save_string_to_file(basepath2, para_template_exampletext)
 
     return templ_fname
@@ -1090,15 +1090,15 @@ def natural_keys(text):
     return [atoi(c) for c in re.split(r'(\d+)', text)]
     
 def get_available_templates():
-    paths = (x for x in Path('extensions/mass_rewritter/Template').iterdir() if x.suffix in ('.txt'))
+    paths = (x for x in Path('extensions/mass_rewriter/Template').iterdir() if x.suffix in ('.txt'))
     return ['None'] + sorted(set((k.stem for k in paths)), key=natural_keys)
 
 def get_available_input():
-    paths = (x for x in Path('extensions/mass_rewritter/inputs').iterdir() if x.suffix in ('.txt'))
+    paths = (x for x in Path('extensions/mass_rewriter/inputs').iterdir() if x.suffix in ('.txt'))
     return ['None'] + sorted(set((k.stem for k in paths)), key=natural_keys)   
 
 def get_available_input_JSON():
-    paths = (x for x in Path('extensions/mass_rewritter/inputs').iterdir() if x.suffix in ('.json'))
+    paths = (x for x in Path('extensions/mass_rewriter/inputs').iterdir() if x.suffix in ('.json'))
     return ['None'] + sorted(set((k.stem for k in paths)), key=natural_keys)   
 
 def save_string_to_file(file_path, string):
@@ -1397,4 +1397,5 @@ def ui():
     names_last.change(lambda x: params.update({"names_last": x}), names_last, None)
     names_places1.change(lambda x: params.update({"names_places1": x}), names_places1, None)
     names_places2.change(lambda x: params.update({"names_places2": x}), names_places2, None)
+
 
